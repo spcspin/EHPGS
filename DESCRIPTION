@@ -1,0 +1,30 @@
+Package: EHPGS
+Type: Package
+Title: Evaluation of hybrid performance in plant breeding via genomic selection
+Version: 0.1.0
+Date: 2022-12-15
+Author: c(
+        person("Szu-Ping", "Chen", 
+            email = "r09621108@ntu.edu.tw", 
+            role = c("aut","cre"), 
+            ),
+        person("Chih-Wei"", "Tung", 
+            email = "chihweitung@ntu.edu.tw", 
+            role = c("aut"), 
+            ),
+        person("Pei-Hsien", "Wang", 
+            email = "R09621206@ntu.edu.tw", 
+            role = c("aut"), 
+            ),  
+        person("Chen-Tuo", "Liao", 
+            email = "ctliao@ntu.edu.tw", 
+            role = c("aut", "ths"), 
+            comment = c(ORCID = "0000-0001-9777-3701")))
+Maintainer: Szu-Ping, Chen <r09621108@ntu.edu.tw>
+Description: We propose a GS-based approach to identify potential parental lines and superior hybrid combinations from a breeding population composed of hybrids produced by a half diallel mating scheme.
+License: GPL (>= 3)
+Depends:R (>= 3.5.0)
+Imports: MASS,stats,utils
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.2
