@@ -64,16 +64,7 @@ EHPGS <- function(num.F1,num.P,train.pheno,train.geno,parent.geno,train.in.test=
 
   rownames(hybrid.geno) <- F1
 
-  Ka <- kinship(train.geno)
-  Xd <- replace(train.geno,train.geno==0,99)
-  Xd <- replace(Xd,Xd==1,0)
-  Xd <- replace(Xd,Xd==-1,0)
-  Xd <- replace(Xd,Xd==99,1)
-
-  Kd <- kinship(Xd)
-
-  rownames(Ka) = rownames(Kd) = colnames(Ka) = colnames(Kd) = rownames(train.geno)
-
+ 
   index = match(train.in.test,F1)
   de.hybrid.geno <- hybrid.geno[-index,]
   Xa <- rbind(train.geno,de.hybrid.geno)
@@ -85,6 +76,9 @@ EHPGS <- function(num.F1,num.P,train.pheno,train.geno,parent.geno,train.in.test=
   KD <- kinship(Xd)
 
   rownames(KA) = rownames(KD) = colnames(KA) = colnames(KD) = c(rownames(train.geno),rownames(de.hybrid.geno))
+  
+  Ka <- KA[rownames(train.geno),rownames(train.geno)]
+  Kd <- KD[rownames(train.geno),rownames(train.geno)]
 
 
   matrix.inverse=FALSE
