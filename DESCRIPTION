@@ -3,17 +3,7 @@ Type: Package
 Title: Evaluation of hybrid performance in plant breeding via genomic selection
 Version: 0.1.0
 Date: 2022-12-15
-Author: Szu-Ping, Chen
-        r09621108@ntu.edu.tw 
-        
-        Chih-Wei, Tung 
-        chihweitung@ntu.edu.tw 
-        
-        Pei-Hsien, Wang
-        R09621206@ntu.edu.tw 
-       
-        Chen-Tuo, Liao 
-        ctliao@ntu.edu.tw 
+Author: Szu-Ping, Chen;Chih-Wei, Tung;Pei-Hsien, Wang;Chen-Tuo, Liao 
 Maintainer: Szu-Ping, Chen <r09621108@ntu.edu.tw>
 Description: We propose a GS-based approach to identify potential parental lines and superior hybrid combinations from a breeding population composed of hybrids produced by a half diallel mating scheme.
 License: GPL (>= 3)
