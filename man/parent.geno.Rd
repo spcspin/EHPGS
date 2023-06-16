@@ -5,13 +5,13 @@
 \alias{parent.geno}
 \title{Genotype information of parental lines}
 \format{
-A numeric matrix with 24 rows (parental lines) and 46,134 columns (SNPs).
+A numeric matrix with 142 rows (parental lines) and 4,521 columns (SNPs).
 }
 \usage{
 parent.geno
 }
 \description{
-Genotype information of parental lines. This data was published by Guo et al. (2019) <doi:10.1016/j.molp.2018.12.022>
+Genotype information of parental lines. This data was published by Wu et al. (2019) <doi.org/10.3835/plantgenome2018.10.0082>
 }
 \examples{
 data(parent.geno)

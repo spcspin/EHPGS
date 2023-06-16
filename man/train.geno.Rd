@@ -5,13 +5,13 @@
 \alias{train.geno}
 \title{Genotype information of training set.}
 \format{
-A numeric matrix with 276 rows (F1s of half diallel design) and 46,134 columns (SNPs).
+A numeric matrix with 119 rows (Hybrid of half diallel design) and 4,512 columns (SNPs).
 }
 \usage{
 train.geno
 }
 \description{
-Genotype information of F1s used to construct a prediction model. This data was published by Guo et al. (2019) <doi:10.1016/j.molp.2018.12.022>
+Genotype information of hybrids used to construct a prediction model. This data was published by Wu et al. (2019) <doi.org/10.3835/plantgenome2018.10.0082>
 }
 \examples{
 data(train.geno)
