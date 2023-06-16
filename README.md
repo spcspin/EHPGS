@@ -6,7 +6,7 @@ EHPGS is a  GS-based approach to identify potential parental lines and superior 
 The EHPGS can be installed from GitHub:
 
 ``` r
-# library(devtools)
+library(devtools)
 install_github("spcspin/EHPGS", dependencies = TRUE, force = TRUE)
 ```
 
@@ -17,7 +17,7 @@ install_github("spcspin/EHPGS", dependencies = TRUE, force = TRUE)
 - `EHPGS`: Function for evaluation of hybrid performance in plant breeding via genomic selection.
 
 ## Example dataset
-The test dataset provided in this package is the maize dataset which was published by Guo et al. (2019) <doi:10.1016/j.molp.2018.12.022>.
+The test dataset provided in this package is the pumpkin dataset which was published by Wu et al. (2019) <doi.org/10.3835/plantgenome2018.10.0082>.
 
 ## Authors
 
@@ -37,5 +37,8 @@ The test dataset provided in this package is the maize dataset which was publish
     - Author, thesis advisor
     - E-mail: ctliao@ntu.edu.tw
     - Department of Agronomy, National Taiwan University, Taipei, Taiwan
+
+## Tutorial 
+
 
 

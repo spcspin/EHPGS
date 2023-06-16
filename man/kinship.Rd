@@ -16,6 +16,5 @@ K A numerical matrix (relationship matrix)
 This function calculate additive and dominance relationship matrix.
 }
 \examples{
-
 KA <- kinship(train.geno)
 }

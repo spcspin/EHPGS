@@ -8,16 +8,17 @@ BGS(
   pheno,
   KA,
   KD,
-  mu.ini,
-  ga.ini,
-  gd.ini,
-  vE.ini,
-  vA.ini,
-  vD.ini,
-  iter,
-  m,
+  mu.ini = 0,
+  ga.ini = 0,
+  gd.ini = 0,
+  vE.ini = 1,
+  vA.ini = 0,
+  vD.ini = 0,
+  iter = 5000,
+  m = 1,
   S_star,
-  nu_star
+  nu_star = 5,
+  cat.itr = TRUE
 )
 }
 \arguments{
@@ -46,6 +47,8 @@ BGS(
 \item{S_star}{The shape of freedom of the variance components for the prior distribution of a scaled inverse Chi square.}
 
 \item{nu_star}{The degree of freedom of the variance components for the prior distribution of a scaled inverse Chi square.}
+
+\item{cat.itr}{A boolean variable determines whether to print out the iteration number.}
 }
 \value{
 This function will return the MCMC value of additive genotypic value (g_A;ga), dominance genotypic value (g_D;gd), constant term (\eqn{mu};mu), and variance components(additive variance;vA, dominance variance;vD, error variance;vE)
@@ -62,9 +65,9 @@ Xd <- replace(Xd,Xd==-1,0)
 Xd <- replace(Xd,Xd==99,1)
 
 KD <- kinship(Xd)
-KA <- KA +diag(10^(-8),nrow = nrow(KA), ncol = ncol(KA))
-KD <- KD +diag(10^(-8),nrow = nrow(KD), ncol = ncol(KD))
+KA <- KA +diag(10^(-9),nrow = nrow(KA), ncol = ncol(KA))
+KD <- KD +diag(10^(-9),nrow = nrow(KD), ncol = ncol(KD))
 
-result <- BGS(pheno =BLUP.pheno,KA = KA,KD = KD,mu.ini = 0,ga.ini = 0,gd.ini = 0,
-vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1,S_star = 0.5*var(BLUP.pheno),nu_star = 5)
+result <- BGS(pheno =train.pheno$F1.weight,KA = KA,KD = KD,mu.ini = 0,ga.ini = 0,gd.ini = 0,
+vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1,S_star = 0.5*var(train.pheno$F1.weight),nu_star = 5)
 }

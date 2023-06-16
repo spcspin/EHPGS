@@ -3,6 +3,8 @@
 export(BGS)
 export(EHPGS)
 export(kinship)
+import(BGLR)
 import(MASS)
+import(sommer)
 import(stats)
 import(utils)

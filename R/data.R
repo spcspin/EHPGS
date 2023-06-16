@@ -1,8 +1,8 @@
 #' Genotype information of parental lines
 #'
-#' Genotype information of parental lines. This data was published by Guo et al. (2019) <doi:10.1016/j.molp.2018.12.022>
+#' Genotype information of parental lines. This data was published by Wu et al. (2019) <doi.org/10.3835/plantgenome2018.10.0082>
 #'
-#' @format A numeric matrix with 24 rows (parental lines) and 46,134 columns (SNPs).
+#' @format A numeric matrix with 142 rows (parental lines) and 4,521 columns (SNPs).
 #'
 #' @examples
 #' data(parent.geno)
@@ -10,9 +10,9 @@
 
 #' Genotype information of training set.
 #'
-#' Genotype information of F1s used to construct a prediction model. This data was published by Guo et al. (2019) <doi:10.1016/j.molp.2018.12.022>
+#' Genotype information of hybrids used to construct a prediction model. This data was published by Wu et al. (2019) <doi.org/10.3835/plantgenome2018.10.0082>
 #'
-#' @format A numeric matrix with 276 rows (F1s of half diallel design) and 46,134 columns (SNPs).
+#' @format A numeric matrix with 119 rows (Hybrid of half diallel design) and 4,512 columns (SNPs).
 #'
 #' @examples
 #' data(train.geno)
@@ -20,30 +20,12 @@
 
 #' Phenotype
 #'
-#' Grain yield (Mg/ha)  of samples. This data was published by Guo et al. (2019) <doi:10.1016/j.molp.2018.12.022>
+#' Fruit weight (kg) of samples. This data was published by Wu et al. (2019) <doi.org/10.3835/plantgenome2018.10.0082>
 #'
-#' @format A numeric vector of grain yield values which were adjusted from the variability of the different locations and years.
+#' @format A numeric data frame with four columns representing the hybrids, parent names, and their corresponding phenotypes.
 #'
 #' @examples
-#' data(BLUP.pheno)
-"BLUP.pheno"
+#' data(train.pheno)
+"train.pheno"
 
-#' Phenotype
-#'
-#' Grain yield (Mg/ha)  of samples at Clayton, NC. This data was published by Guo et al. (2019) <doi:10.1016/j.molp.2018.12.022>
-#'
-#' @format A numeric vector of grain yield values at Clayton, NC.
-#'
-#' @examples
-#' data(NC.pheno)
-"NC.pheno"
 
-#' Phenotype
-#'
-#' Grain yield (Mg/ha)  of samples at Columbia, MO. This data was published by Guo et al. (2019) <doi:10.1016/j.molp.2018.12.022>
-#'
-#' @format A numeric vector of grain yield values at Columbia, MO.
-#'
-#' @examples
-#' data(MO.pheno)
-"MO.pheno"

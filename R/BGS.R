@@ -13,6 +13,7 @@
 #' @param m       Number of independent chain.
 #' @param S_star  The shape of freedom of the variance components for the prior distribution of a scaled inverse Chi square.
 #' @param nu_star The degree of freedom of the variance components for the prior distribution of a scaled inverse Chi square.
+#' @param cat.itr A boolean variable determines whether to print out the iteration number.
 #'
 #' @return This function will return the MCMC value of additive genotypic value (g_A;ga), dominance genotypic value (g_D;gd), constant term (\eqn{mu};mu), and variance components(additive variance;vA, dominance variance;vD, error variance;vE)
 #' @export
@@ -26,15 +27,19 @@
 #' Xd <- replace(Xd,Xd==99,1)
 #'
 #' KD <- kinship(Xd)
-#' KA <- KA +diag(10^(-8),nrow = nrow(KA), ncol = ncol(KA))
-#' KD <- KD +diag(10^(-8),nrow = nrow(KD), ncol = ncol(KD))
+#' KA <- KA +diag(10^(-9),nrow = nrow(KA), ncol = ncol(KA))
+#' KD <- KD +diag(10^(-9),nrow = nrow(KD), ncol = ncol(KD))
 #'
-#' result <- BGS(pheno =BLUP.pheno,KA = KA,KD = KD,mu.ini = 0,ga.ini = 0,gd.ini = 0,
-#' vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1,S_star = 0.5*var(BLUP.pheno),nu_star = 5)
-BGS <- function(pheno,KA,KD,mu.ini,ga.ini,gd.ini,vE.ini,vA.ini,vD.ini,iter,m,S_star,nu_star){
+#' result <- BGS(pheno =train.pheno$F1.weight,KA = KA,KD = KD,mu.ini = 0,ga.ini = 0,gd.ini = 0,
+#' vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1,S_star = 0.5*var(train.pheno$F1.weight),nu_star = 5)
+BGS <- function(pheno,KA,KD,mu.ini=0,ga.ini=0,gd.ini=0,vE.ini=1,vA.ini=0,vD.ini=0,iter=5000,m=1,S_star,nu_star=5,cat.itr=TRUE){
   y=pheno
   n=length(pheno)
   n_fix=1
+
+  if (is.null(mu.ini)) {
+    mu.ini = mean(train.pheno,na.rm =TRUE)
+  }
 
   ga_dat <- array(NA,c(m,iter,n))
   gd_dat <- array(NA,c(m,iter,n))
@@ -45,10 +50,14 @@ BGS <- function(pheno,KA,KD,mu.ini,ga.ini,gd.ini,vE.ini,vA.ini,vD.ini,iter,m,S_s
 
 
   for (i in 1:m) {
-    cat(paste("\n","#chain=",i,"\n",sep = ""))
+    if (cat.itr) {
+      cat(paste("\n","#chain=",i,"\n",sep = ""))
+    }
     for (j in 0:iter) {
       if (j==0) {
-        cat("iter=")
+        if (cat.itr) {
+          cat("iter=")
+        }
         vA=vA.ini;vD=vD.ini;vE=vE.ini
         lamA=vE/vA;lamD=vE/vD
         X=rep(1,n)
@@ -78,7 +87,9 @@ BGS <- function(pheno,KA,KD,mu.ini,ga.ini,gd.ini,vE.ini,vA.ini,vD.ini,iter,m,S_s
 
       }
 
-      cat(".")
+      if (cat.itr) {
+        cat(".")
+      }
 
       g1_star=solve(C[1:n_fix,1:n_fix])%*%(r1-C[n_fix,seq(n_fix+1,n_fix+n)]%*%g2-C[n_fix,seq(n_fix+n+1,n_fix+n+n)]%*%g3)
       g1=MASS::mvrnorm(n=1,mu=g1_star,Sigma = vE*solve(C[n_fix,n_fix]))
@@ -112,8 +123,9 @@ BGS <- function(pheno,KA,KD,mu.ini,ga.ini,gd.ini,vE.ini,vA.ini,vD.ini,iter,m,S_s
       vD_dat[i,j] <- vD
       vE_dat[i,j] <- vE
 
-      cat(j,sep="")
-
+      if (cat.itr) {
+        cat(j,sep="")
+      }
     }
 
   }

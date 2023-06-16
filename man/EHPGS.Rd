@@ -11,6 +11,7 @@ EHPGS(
   train.geno,
   parent.geno,
   train.in.test = NULL,
+  method = "BGS",
   mu.ini = NULL,
   ga.ini = 0,
   gd.ini = 0,
@@ -18,7 +19,9 @@ EHPGS(
   vA.ini = 0.5,
   vD.ini = 0.5,
   iter = 10000,
-  m = 5
+  m = 5,
+  burnIn = 500,
+  thin = 5
 )
 }
 \arguments{
@@ -34,21 +37,27 @@ EHPGS(
 
 \item{train.in.test}{A character vector of lines' names which are both in training set and half-diallel design.}
 
-\item{mu.ini}{Initial values for the constant term.}
+\item{method}{Select the method used to build the model, including BGS, BGLR, and sommer.}
 
-\item{ga.ini}{Initial values for the additive genotypic value.}
+\item{mu.ini}{Initial values for the constant term for BGS method.}
 
-\item{gd.ini}{Initial values for the dominance genotypic value}
+\item{ga.ini}{Initial values for the additive genotypic value for BGS method.}
 
-\item{vE.ini}{Initial values for the error variance.}
+\item{gd.ini}{Initial values for the dominance genotypic value for BGS method.}
 
-\item{vA.ini}{Initial values for the additive variance.}
+\item{vE.ini}{Initial values for the error variance for BGS method.}
 
-\item{vD.ini}{Initial values for the dominance variance.}
+\item{vA.ini}{Initial values for the additive variance for BGS method.}
 
-\item{iter}{Number of iteration in each chain.}
+\item{vD.ini}{Initial values for the dominance variance for BGS method.}
 
-\item{m}{Number of independent chain.}
+\item{iter}{Number of iteration in each chain for BGS or BGLR method.}
+
+\item{m}{Number of independent chain for BGS method.}
+
+\item{burnIn}{An integer number of burn-in for BGLR method.}
+
+\item{thin}{An integer number of thinning for BGLR method.}
 }
 \value{
 This function will return 3 data frames, F1.out includes the top n GEBV F1s (n=num.F1) and its GEBV,SCA,MPH, and BPH. P.out includes the top m GEBV parents (m=num.P) and its GEBV,GCA. V.out includes the estimate of constant term and variance components (additive variance,dominance variance,and error variance)
@@ -57,7 +66,7 @@ This function will return 3 data frames, F1.out includes the top n GEBV F1s (n=n
 Evaluation of hybrid performance in plant breeding via genomic selection
 }
 \examples{
-EHPGS(num.F1=15,num.P=5,train.pheno=BLUP.pheno,train.geno,parent.geno,
+EHPGS(num.F1=15,num.P=5,train.pheno=train.pheno$F1.weight,train.geno,parent.geno[1:10,],
 train.in.test=rownames(train.geno),mu.ini=NULL,
 ga.ini = 0,gd.ini = 0,vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1)
 }
