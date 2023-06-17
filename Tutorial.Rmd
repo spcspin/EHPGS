@@ -31,11 +31,11 @@ print(parent.geno[1:5,1:5])
 ## Evaluation hybrid performance 
 Please select the desired prediction method and configure the relevant parameters to proceed. If the training set includes hybrids, kindly provide the names of the hybrids in the following format: two parents separated by a colon (e.g., A:B) and run EHPGS; then we can get the output of best hybrids and parental lines.
 
-```{r cars}
-hybrid.name = combn(row.names(parent.geno[1:10,]), 2, paste, collapse = ":")
-train.in.test = intersect(row.names(train.geno),combn(row.names(parent.geno), 2, paste, collapse = ":"))
-result = EHPGS(num.F1=15,num.P=5,train.pheno=train.pheno$F1.weight,train.geno,parent.geno[1:10,],train.in.test=train.in.test,method= 'BGS',mu.ini=NULL,
-ga.ini = 0,gd.ini = 0,vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1)
+```{r}
+parent.geno = parent.geno[1:10,]
+hybrid.name = combn(row.names(parent.geno), 2, paste, collapse = ":")
+tr.test = intersect(row.names(train.geno),combn(row.names(parent.geno), 2, paste, collapse = ":"))
+result = EHPGS(num.F1=15,num.P=5,train.pheno=train.pheno$F1.weight,train.geno = train.geno,parent.geno = parent.geno,train.in.test = tr.test,method= 'BGS',mu.ini=NULL,ga.ini = 0,gd.ini = 0,vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1)
 
 print(result)
 ```
