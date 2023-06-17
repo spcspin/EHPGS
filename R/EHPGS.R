@@ -143,8 +143,8 @@ EHPGS = function(num.F1,num.P,train.pheno,train.geno,parent.geno,train.in.test=N
   }
   if (method == 'sommer') {
     phe.sommer = as.data.frame(train.pheno)
-    phe$F1.A = factor(row.names(train.geno))
-    phe$F1.D = factor(row.names(train.geno))
+    phe.sommer$F1.A = factor(row.names(train.geno))
+    phe.sommer$F1.D = factor(row.names(train.geno))
     fit.sommer = sommer::mmer(train.pheno ~ 1,
                        random = ~vsr(F1.A, Gu = Ka) + vsr(F1.D, Gu = Kd),
                        rcov = ~vsr(units),
