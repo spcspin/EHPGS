@@ -22,8 +22,9 @@
 #' @export
 #' @import MASS stats utils sommer BGLR
 #' @examples
+#' tr.test = intersect(row.names(train.geno),combn(row.names(parent.geno), 2, paste, collapse = ":"))
 #' EHPGS(num.F1=15,num.P=5,train.pheno=train.pheno$F1.weight,train.geno,parent.geno[1:10,],
-#' train.in.test=rownames(train.geno),mu.ini=NULL,
+#' train.in.test=tr.test,mu.ini=NULL,
 #' ga.ini = 0,gd.ini = 0,vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1)
 EHPGS = function(num.F1,num.P,train.pheno,train.geno,parent.geno,train.in.test=NULL,method="BGS",mu.ini=NULL,ga.ini = 0,gd.ini = 0,vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 10000,m = 5,burnIn = 500, thin = 5){
   ### set prior parameters
