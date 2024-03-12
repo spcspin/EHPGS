@@ -66,8 +66,11 @@ This function will return 3 data frames, F1.out includes the top n GEBV F1s (n=n
 Evaluation of hybrid performance in plant breeding via genomic selection
 }
 \examples{
+parent.geno = parent.geno[1:10,]
+hybrid.name = combn(row.names(parent.geno), 2, paste, collapse = ":")
 tr.test = intersect(row.names(train.geno),combn(row.names(parent.geno), 2, paste, collapse = ":"))
-EHPGS(num.F1=15,num.P=5,train.pheno=train.pheno$F1.weight,train.geno,parent.geno[1:10,],
-train.in.test=tr.test,mu.ini=NULL,
-ga.ini = 0,gd.ini = 0,vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1)
+EHPGS(num.F1=15,num.P=5,train.pheno=train.pheno$F1.weight,
+train.geno = train.geno,parent.geno = parent.geno,train.in.test = tr.test,method= 'BGS',
+mu.ini=NULL,ga.ini = 0,gd.ini = 0,vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1)
+
 }
