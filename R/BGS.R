@@ -32,7 +32,7 @@
 #'
 #' result <- BGS(pheno =train.pheno$F1.weight,KA = KA,KD = KD,mu.ini = 0,ga.ini = 0,gd.ini = 0,
 #' vE.ini = 1,vA.ini = 0.5,vD.ini = 0.5,iter = 100,m = 1,S_star = 0.5*var(train.pheno$F1.weight),nu_star = 5)
-BGS <- function(pheno,KA,KD,mu.ini=0,ga.ini=0,gd.ini=0,vE.ini=1,vA.ini=0,vD.ini=0,iter=5000,m=1,S_star,nu_star=5,cat.itr=TRUE){
+BGS <- function(pheno,KA,KD,mu.ini=0,ga.ini=0,gd.ini=0,vE.ini=1,vA.ini=0.5,vD.ini=0.5,iter=5000,m=1,S_star,nu_star=5,cat.itr=TRUE){
   y=pheno
   n=length(pheno)
   n_fix=1
